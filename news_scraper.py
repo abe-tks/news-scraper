@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import csv
 
-# 1. ニュースサイトのURL
+#  ニュースサイトのURL
 url = "https://news.yahoo.co.jp/"
 
 # 2. ページを取得
