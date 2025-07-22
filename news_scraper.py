@@ -15,12 +15,15 @@ soup = BeautifulSoup(response.text, "html.parser")
 #  見出しを取得
 headlines = soup.find_all("a")
 
+seen = set()  # すでに追加したURLを記録するための集合
 results = []
 for link in headlines:
     text = link.text.strip()
     href = link.get("href")
     if text and href and href.startswith("https://news.yahoo.co.jp/pickup"):  # Yahooのピックアップニュース例
-        results.append([text, href])
+        if href not in seen:  # まだ追加していないURLだけを追加
+            results.append([text, href])
+            seen.add(href)  # 記録
 
 #  コンソールに表示
 for i, item in enumerate(results):
